@@ -3,7 +3,7 @@ version: '2.2'
 services:
 
   opera:
-    image: opera:test
+    image: hadv/opera:latest
     command: --genesis /etc/opera/genesis/testnet.g --gcmode=full --metrics --metrics.expensive --pprof --pprof.addr=0.0.0.0
     volumes:
       - ./testnet.g:/etc/opera/genesis/testnet.g
