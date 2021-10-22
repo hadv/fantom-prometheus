@@ -1,0 +1,27 @@
+version: '2.2'
+
+services:
+
+  opera:
+    image: opera:test
+    command: --genesis /etc/opera/genesis/testnet.g --gcmode=full --metrics --metrics.expensive --pprof --pprof.addr=0.0.0.0
+    volumes:
+      - ./testnet.g:/etc/opera/genesis/testnet.g
+
+  prometheus:
+    image: prom/prometheus
+    depends_on:
+      opera:
+        condition: service_started
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      prometheus:
+        condition: service_started
+    volumes:
+      - ./grafana.db:/var/lib/grafana/grafana.db
