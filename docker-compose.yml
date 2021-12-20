@@ -4,7 +4,7 @@ services:
 
   opera:
     image: hadv/opera:latest
-    command: --genesis /etc/opera/genesis/testnet.g --gcmode=full --metrics --metrics.expensive --pprof --pprof.addr=0.0.0.0
+    command: --genesis /etc/opera/genesis/testnet.g --metrics --metrics.expensive --pprof --pprof.addr=0.0.0.0
     volumes:
       - ./testnet.g:/etc/opera/genesis/testnet.g
 
